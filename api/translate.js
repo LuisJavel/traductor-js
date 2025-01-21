@@ -7,7 +7,7 @@ if(process.env.NODE_ENV !== 'production'){
 
 export default async function handler(req, res) {
   if(req.method !== 'POST'){
-    return res.status(200).json({message: 'Holla sary'})
+    return res.status(405).json({error: 'Method not Allowed'})
   }
   const {text, target} = req.body
 
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     return res.status(400).json({error: 'Missing text or language'})
   }
 
-  const apiKey = process.env.GOOGLE_TRANSLATE_API_KEY
+  const apiKey = process.env.GOOGLE_TRANSLATE_API_KEY;
   const apiURL = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
 
   try {
